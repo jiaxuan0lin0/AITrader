@@ -42,7 +42,25 @@ bash FactorMiner/news_scoring/download_qwen3_32b_awq_modelscope.sh
 tail -80 data/logs/qwen3_32b_awq_modelscope_download.log
 ```
 
-TODO: 补充新闻评分推理依赖的推荐版本范围。
+## 推理环境
+
+新闻评分推理依赖以 `code/environment.aitrader.yml` 为准。当前导出环境中的关键版本如下：
+
+| 组件 | 版本 |
+| --- | --- |
+| `python` | `3.12.13` |
+| `vllm` | `0.10.2` |
+| `torch` | `2.8.0+cu128` |
+| `transformers` | `4.55.2` |
+| `xformers` | `0.0.32.post1` |
+| `cupy-cuda12x` | `14.1.0` |
+
+从仓库根目录创建环境：
+
+```bash
+conda env create -f code/environment.aitrader.yml
+conda activate aitrader
+```
 
 ## 启动推理服务
 

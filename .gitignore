@@ -27,38 +27,9 @@ data/runtime/
 data/logs/
 data/models/
 
-# Heavy experiment artifacts. Keep README/CSV/JSON/YAML summaries trackable.
-data/experiments/msgca/*
-!data/experiments/msgca/README.md
-!data/experiments/msgca/final/
-!data/experiments/msgca/final/**
-data/experiments/**/checkpoints/
-data/experiments/**/*.pt
-data/experiments/**/*.pth
-data/experiments/**/*.safetensors
-data/experiments/**/*.parquet
-data/experiments/**/*.log
-data/experiments/**/*.pid
-data/experiments/**/competition_signals/
-data/experiments/**/latest_scored_predictions.*
-data/experiments/**/validation_predictions.*
-data/experiments/**/holdout_predictions.*
-data/experiments/**/predictions/
-
-# Report build artifacts and local backups
-report/build/
-report/backups/
-report/**/*.aux
-report/**/*.bbl
-report/**/*.bcf
-report/**/*.blg
-report/**/*.fdb_latexmk
-report/**/*.fls
-report/**/*.log
-report/**/*.out
-report/**/*.run.xml
-report/**/*.synctex.gz
-report/**/*.toc
+# Local experiment records and report workspace
+data/experiments/
+report/
 
 # Generic generated files
 *.tmp

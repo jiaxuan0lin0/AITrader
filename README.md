@@ -26,11 +26,10 @@ AITrader 是面向 A 股 Top20 选股任务的研究与模拟交易系统，覆�
 ```text
 AItrader/
   code/      Python 代码、训练脚本、工作流和测试
-  data/      数据、实验摘要和模型产物目录
-  report/    实验报告源码、图表和构建脚本
+  data/      数据、模型产物、日志和运行状态目录
 ```
 
-版本控制范围限于代码、说明文档和轻量级实验摘要。原始行情、特征矩阵、checkpoint、外部模型权重、日志和运行状态文件作为外部资产管理。
+版本控制范围限于代码、说明文档和环境清单。原始行情、特征矩阵、实验记录、报告材料、checkpoint、外部模型权重、日志和运行状态文件作为外部资产管理。
 
 ## 核心模块
 
@@ -40,19 +39,18 @@ AItrader/
 | 🧮 | 因子工程 | `code/FactorMiner/` | 构建日频因子、新闻样本因子、样本级特征和特征筛选产物。 |
 | 🧠 | MSGCA | `code/model/msgca/` | 训练、评估、回测和推理多源门控交叉注意力排序模型。 |
 | 🔁 | 工作流 | `code/workflow/` | 编排数据更新、新闻打分、因子构建、特征组装和 live 推理。 |
-| 📊 | 实验记录 | `data/experiments/msgca/` | 保存轻量实验摘要、配置和最终运行元数据。 |
-| 📄 | 报告 | `report/` | 保存实验报告源码和图表生成脚本。 |
 
 ## 环境
 
-本文档中的命令默认在已配置的 `aitrader` conda 环境中执行，并从 `code/` 目录运行 Python 模块。
+本文档中的命令默认在 `aitrader` conda 环境中执行，并从 `code/` 目录运行 Python 模块。
 
 ```bash
+conda env create -f code/environment.aitrader.yml
 conda activate aitrader
 cd code
 ```
 
-依赖清单位于 `code/requirements.txt`。
+环境清单由本地 `aitrader` conda 环境导出，文件为 `code/environment.aitrader.yml`。最小 Python 依赖清单位于 `code/requirements.txt`。
 
 ## 路径变量
 
@@ -109,9 +107,11 @@ flowchart LR
 data/raw_market_data/
 data/datasets/
 data/models/
+data/experiments/
 data/logs/
 data/runtime/
 data/secrets/
+report/
 ```
 
 最终 MSGCA 运行目录：
@@ -139,13 +139,7 @@ checkpoint 是大体积二进制产物，跨机器部署时需要通过外部 ar
 | `code/model/msgca/README.md` | MSGCA 模型训练、评估、回测和推理 |
 | `code/workflow/README.md` | 端到端工作流 |
 | `data/README.md` | 数据目录边界 |
-| `data/experiments/msgca/README.md` | MSGCA 实验登记 |
-| `report/README.md` | 报告构建 |
 
 ## License
 
 代码目录包含 `code/LICENSE`，当前许可证文本为 Apache License 2.0。
-
-## Citation
-
-TODO: 补充论文或项目引用方式。

@@ -4,6 +4,22 @@
 
 ## 环境
 
+从仓库根目录创建环境：
+
+```bash
+conda env create -f code/environment.aitrader.yml
+conda activate aitrader
+```
+
+在已有环境上同步依赖：
+
+```bash
+conda env update -n aitrader -f code/environment.aitrader.yml --prune
+conda activate aitrader
+```
+
+进入代码目录：
+
 ```bash
 conda activate aitrader
 cd code
@@ -19,6 +35,7 @@ cd code
 | `workflow/` | 端到端工作流入口。 |
 | `tests/` | 单元测试和关键流程测试。 |
 | `aitrader_paths.py` | 项目路径和环境变量解析。 |
+| `environment.aitrader.yml` | 从本地 `aitrader` conda 环境导出的完整环境清单。 |
 | `requirements.txt` | Python 依赖清单。 |
 
 ## 路径配置
