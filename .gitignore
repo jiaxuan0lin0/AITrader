@@ -8,6 +8,7 @@ __pycache__/
 .idea/
 .codex/
 .agents/
+AITrader_README_redesign/
 
 # Local environment and credentials
 .env
