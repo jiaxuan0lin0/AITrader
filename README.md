@@ -1,8 +1,25 @@
 # AITrader
 
+<p align="center">
+  <img src="https://img.shields.io/badge/domain-A--share%20ranking-2f6f9f" alt="Domain: A-share ranking">
+  <img src="https://img.shields.io/badge/model-MSGCA-6f42c1" alt="Model: MSGCA">
+  <img src="https://img.shields.io/badge/env-conda%3A%20aitrader-198754" alt="Conda environment: aitrader">
+  <img src="https://img.shields.io/badge/license-Apache--2.0-0d6efd" alt="License: Apache-2.0">
+</p>
+
 AITrader 是面向 A 股 Top20 选股任务的研究与模拟交易系统，覆盖数据同步、标准表构建、因子工程、MSGCA 排序模型、策略回测和 live 信号生成流程。
 
 本文档只描述项目级信息。各模块的输入、输出、脚本和参数说明见对应目录 README。
+
+## 项目概览
+
+| 项目 | 内容 |
+| --- | --- |
+| 任务 | A 股 Top20 选股研究与模拟交易 |
+| 模型 | MSGCA 多源门控交叉注意力排序模型 |
+| 数据形态 | 原始行情、标准 `parquet` 表、因子表、样本级特征矩阵 |
+| 运行环境 | `aitrader` conda 环境 |
+| 许可证 | Apache License 2.0，见 `code/LICENSE` |
 
 ## 目录结构
 
@@ -17,14 +34,14 @@ AItrader/
 
 ## 核心模块
 
-| 模块 | 路径 | 说明 |
-| --- | --- | --- |
-| 数据处理 | `code/data/` | 同步原始 A 股文件并生成标准 `parquet` 表。 |
-| 因子工程 | `code/FactorMiner/` | 构建日频因子、新闻样本因子、样本级特征和特征筛选产物。 |
-| MSGCA | `code/model/msgca/` | 训练、评估、回测和推理多源门控交叉注意力排序模型。 |
-| 工作流 | `code/workflow/` | 编排数据更新、新闻打分、因子构建、特征组装和 live 推理。 |
-| 实验记录 | `data/experiments/msgca/` | 保存轻量实验摘要、配置和最终运行元数据。 |
-| 报告 | `report/` | 保存实验报告源码和图表生成脚本。 |
+| 图标 | 模块 | 路径 | 说明 |
+| --- | --- | --- | --- |
+| 📥 | 数据处理 | `code/data/` | 同步原始 A 股文件并生成标准 `parquet` 表。 |
+| 🧮 | 因子工程 | `code/FactorMiner/` | 构建日频因子、新闻样本因子、样本级特征和特征筛选产物。 |
+| 🧠 | MSGCA | `code/model/msgca/` | 训练、评估、回测和推理多源门控交叉注意力排序模型。 |
+| 🔁 | 工作流 | `code/workflow/` | 编排数据更新、新闻打分、因子构建、特征组装和 live 推理。 |
+| 📊 | 实验记录 | `data/experiments/msgca/` | 保存轻量实验摘要、配置和最终运行元数据。 |
+| 📄 | 报告 | `report/` | 保存实验报告源码和图表生成脚本。 |
 
 ## 环境
 
@@ -74,14 +91,14 @@ python -m workflow.run_live_pipeline \
 
 ## 总体流程
 
-```text
-raw_market_data
--> datasets/processed
--> datasets/factors
--> datasets/features
--> datasets/factors/evaluation
--> data/experiments/msgca
--> competition_signals
+```mermaid
+flowchart LR
+  A[raw_market_data] --> B[datasets/processed]
+  B --> C[datasets/factors]
+  C --> D[datasets/features]
+  D --> E[datasets/factors/evaluation]
+  E --> F[data/experiments/msgca]
+  F --> G[competition_signals]
 ```
 
 ## 数据和模型资产
