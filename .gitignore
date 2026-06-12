@@ -28,6 +28,10 @@ data/logs/
 data/models/
 
 # Heavy experiment artifacts. Keep README/CSV/JSON/YAML summaries trackable.
+data/experiments/msgca/*
+!data/experiments/msgca/README.md
+!data/experiments/msgca/final/
+!data/experiments/msgca/final/**
 data/experiments/**/checkpoints/
 data/experiments/**/*.pt
 data/experiments/**/*.pth
@@ -65,7 +69,7 @@ report/**/*.toc
 *.log
 
 # Local scratch or migration-only experiment records
-# These contain intermediate remote-machine manifests or obsolete strict/smoke naming.
+# These contain intermediate remote-machine manifests or obsolete naming.
 data/experiments/msgca/20260603_strict_direct/
 data/experiments/msgca/20260604_pasted_full_local/
 report/msgca_strict_*.md

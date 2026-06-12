@@ -1,8 +1,0 @@
-{
-  "rank_ic_mean":0.0159435182,
-  "rank_ic_std":0.0985009864,
-  "rank_ic_ir":0.1618615075,
-  "direction_accuracy":0.4621598783,
-  "topk_return_mean":-0.009002417,
-  "day_count":6.0
-}

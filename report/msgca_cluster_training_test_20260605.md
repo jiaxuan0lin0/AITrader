@@ -38,9 +38,9 @@ No external industry/theme labels were introduced.
 
 ## Tests
 
-- `PYTHONPATH=code /home/sutai/home/envs/aitrader/bin/python -m pytest -q code/tests/test_msgca_modules_losses.py`
+- `PYTHONPATH=code <LOCAL_PATH> -m pytest -q code/tests/test_msgca_modules_losses.py`
   - `19 passed`
-- `PYTHONPATH=code /home/sutai/home/envs/aitrader/bin/python -m pytest -q code/tests/test_live_pipeline.py`
+- `PYTHONPATH=code <LOCAL_PATH> -m pytest -q code/tests/test_live_pipeline.py`
   - `4 passed`
 
 ## Experiments

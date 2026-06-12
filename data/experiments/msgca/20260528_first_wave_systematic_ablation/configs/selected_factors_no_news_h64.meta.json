@@ -1,7 +1,0 @@
-{
-  "name": "selected_factors_no_news_h64",
-  "overrides": {
-    "model.enable_news": false,
-    "train.topk_return_loss_weight": 0.02
-  }
-}

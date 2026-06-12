@@ -1,8 +1,0 @@
-{
-  "variant": "gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520",
-  "status": "failed",
-  "error_type": "CalledProcessError",
-  "error": "Command '['/home/sutai/home/envs/aitrader/bin/python', '-m', 'model.msgca.train', '--config', '/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_sweep/configs/20260531_semantic_final_softgate_e5/gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520.yaml', '--final-validate']' returned non-zero exit status 120.",
-  "traceback": "Traceback (most recent call last):\n  File \"/data/jiaxuanLin/AItrader/code/model/msgca/run_systematic_ablations.py\", line 99, in main\n    run_variant(config_path, run_dir)\n  File \"/data/jiaxuanLin/AItrader/code/model/msgca/run_systematic_ablations.py\", line 157, in run_variant\n    subprocess.run(train_command(config_path, variant), check=True, cwd=str(CODE_ROOT))\n  File \"/home/sutai/home/envs/aitrader/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/home/sutai/home/envs/aitrader/bin/python', '-m', 'model.msgca.train', '--config', '/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_sweep/configs/20260531_semantic_final_softgate_e5/gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520.yaml', '--final-validate']' returned non-zero exit status 120.\n",
-  "failed_at": "2026-05-31T11:17:53.426706+00:00"
-}

@@ -1,11 +1,17 @@
-# AItrader 实验目录
+# AITrader 实验目录
 
-本目录用于存放实验产物，和代码目录、标准数据处理产物分开管理。
+`data/experiments/` 用于存放实验配置、轻量摘要和最终运行元数据，并与代码目录、标准数据处理产物分开管理。
 
-当前结构：
+## 目录结构
 
 ```text
-msgca/
+data/experiments/
+  msgca/
 ```
 
-checkpoint、预测 parquet、训练配置、日志、执行脚本和结果摘要都按实验组放在这里。不要再把这些大文件复制回 `code/` 或 `data/datasets/models/`。
+## 管理规则
+
+- 实验组按模型或任务类型归档。
+- 轻量 CSV、JSON、YAML 摘要可保留在仓库中。
+- checkpoint、预测 `parquet`、训练日志和大体积运行产物不提交到 Git。
+- MSGCA 实验登记见 `msgca/README.md`。

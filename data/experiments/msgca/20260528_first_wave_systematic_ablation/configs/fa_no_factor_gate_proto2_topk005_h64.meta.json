@@ -1,8 +1,0 @@
-{
-  "name": "fa_no_factor_gate_proto2_topk005_h64",
-  "overrides": {
-    "train.topk_return_loss_weight": 0.05,
-    "model.factor_group_prototypes": 2,
-    "model.use_factor_gate": false
-  }
-}

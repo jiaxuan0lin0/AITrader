@@ -1,7 +1,7 @@
 Upload these files for the regenerated AI research/design pass:
 
-1. /data/jiaxuanLin/AItrader/report/msgca_strict_loss_score_research_prompt.md
-2. /data/jiaxuanLin/AItrader/report/msgca_strict_variable_audit.md
+1. report/msgca_strict_loss_score_research_prompt.md
+2. report/msgca_strict_variable_audit.md
 
 Do not use the previous research response as the main instruction, because it introduced concept variables before proving field availability.
 
