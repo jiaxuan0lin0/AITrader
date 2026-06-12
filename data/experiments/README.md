@@ -12,6 +12,6 @@ data/experiments/
 ## 管理规则
 
 - 实验组按模型或任务类型归档。
-- 轻量 CSV、JSON、YAML 摘要可保留在仓库中。
-- checkpoint、预测 `parquet`、训练日志和大体积运行产物不提交到 Git。
+- 轻量 CSV、JSON、YAML 摘要可纳入版本控制。
+- checkpoint、预测 `parquet`、训练日志和大体积运行产物按外部资产管理。
 - MSGCA 实验登记见 `msgca/README.md`。

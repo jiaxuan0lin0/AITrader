@@ -1,6 +1,8 @@
-# FactorMiner Core 使用手册
+# FactorMiner Core
 
 `FactorMiner/core/` 定义因子生产的基础合同。这里不计算具体因子，也不读取业务 parquet；它只负责描述“一个因子块应该长什么样”、如何落盘、如何注册、如何把日频因子按样本可见日期对齐。
+
+命令默认在 `aitrader` conda 环境中从 `code/` 目录执行。
 
 ## 目录职责
 
@@ -27,7 +29,7 @@
 
 ### `FactorResult`
 
-因子池函数应返回 `FactorResult`，不要只返回裸 `DataFrame`。标准日频主键是：
+因子池函数应返回 `FactorResult`。标准日频主键是：
 
 ```text
 stock_code, trade_date
@@ -53,7 +55,7 @@ sample_id
 - 行数和因子数
 - 创建时间
 
-不要手写 block JSON；优先使用 `write_factor_block()` 生成 parquet 和 manifest，再用 `upsert_block()` 写入注册表。
+使用 `write_factor_block()` 生成 parquet 和 manifest，再用 `upsert_block()` 写入注册表。
 
 ## 常用流程
 
@@ -77,8 +79,8 @@ upsert_block("/path/to/factor_registry.json", block)
 校验注册表：
 
 ```bash
-python3 -m FactorMiner.build.daily --validate-only
-python3 -m FactorMiner.build.sample_features --validate-only
+python -m FactorMiner.build.daily --validate-only
+python -m FactorMiner.build.sample_features --validate-only
 ```
 
 仅做 metadata 校验时，`registry.validate(..., metadata_only=True)` 会读取 parquet schema 和行数，不全量加载大表。
@@ -94,7 +96,7 @@ python3 -m FactorMiner.build.sample_features --validate-only
 | `samples` | `sample_id`, `stock_code`, `feature_asof_date` |
 | `daily_factors` | `stock_code`, `trade_date` |
 
-对齐后保持样本原始行序。若日频因子主键重复，会直接报错。
+对齐后保持样本原始行序。若日频因子主键重复，校验不通过。
 
 ## 修改守则
 

@@ -9,11 +9,11 @@ AITrader 是面向 A 股 Top20 选股任务的研究与模拟交易系统，覆�
 ```text
 AItrader/
   code/      Python 代码、训练脚本、工作流和测试
-  data/      本地数据、实验摘要和模型产物目录
+  data/      数据、实验摘要和模型产物目录
   report/    实验报告源码、图表和构建脚本
 ```
 
-仓库提交代码、说明文档和轻量级实验摘要。原始行情、特征矩阵、checkpoint、外部模型权重、日志和运行时文件保留在本地，并由 `.gitignore` 排除。
+版本控制范围限于代码、说明文档和轻量级实验摘要。原始行情、特征矩阵、checkpoint、外部模型权重、日志和运行状态文件作为外部资产管理。
 
 ## 核心模块
 
@@ -86,7 +86,7 @@ raw_market_data
 
 ## 数据和模型资产
 
-以下目录属于本地资产，不提交到 Git：
+以下目录作为外部资产目录，不纳入版本控制：
 
 ```text
 data/raw_market_data/
@@ -103,14 +103,14 @@ data/secrets/
 data/experiments/msgca/final/model
 ```
 
-本地最终 checkpoint：
+最终 checkpoint 路径：
 
 ```text
 data/experiments/msgca/final/model/checkpoints/msgca_best.pt
 data/experiments/msgca/final/model/checkpoints/msgca_best.json
 ```
 
-checkpoint 是大体积二进制产物，不提交到 Git。跨机器部署时需要通过外部 artifact 存储单独传输。
+checkpoint 是大体积二进制产物，跨机器部署时需要通过外部 artifact 存储传输。
 
 ## 子文档索引
 
@@ -121,7 +121,7 @@ checkpoint 是大体积二进制产物，不提交到 Git。跨机器部署时�
 | `code/FactorMiner/README.md` | 因子工程总览 |
 | `code/model/msgca/README.md` | MSGCA 模型训练、评估、回测和推理 |
 | `code/workflow/README.md` | 端到端工作流 |
-| `data/README.md` | 本地数据目录边界 |
+| `data/README.md` | 数据目录边界 |
 | `data/experiments/msgca/README.md` | MSGCA 实验登记 |
 | `report/README.md` | 报告构建 |
 

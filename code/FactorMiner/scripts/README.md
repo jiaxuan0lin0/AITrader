@@ -1,6 +1,8 @@
-# FactorMiner Scripts 使用手册
+# FactorMiner Scripts
 
 `FactorMiner/scripts/` 放常用工作流的 shell 封装。脚本只负责设置默认参数、切换工作目录、激活环境和写日志；核心逻辑仍在 Python 模块里。
+
+命令默认在 `aitrader` conda 环境中从 `code/` 目录执行。
 
 ## 脚本列表
 
@@ -28,7 +30,7 @@ FactorMiner/scripts/run_competition_selection_slice.sh
 脚本内部调用：
 
 ```bash
-python3 -m FactorMiner.run_factor_workflow --mode select --select-engine slice
+python -m FactorMiner.run_factor_workflow --mode select --select-engine slice
 ```
 
 ## 常用环境变量

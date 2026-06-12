@@ -1,6 +1,6 @@
 # MSGCA 实验登记
 
-最后更新：2026-06-06
+最后更新：2026-06-12
 
 本文件记录 `data/experiments/msgca` 下 MSGCA 相关实验的目录、配置、指标和归档状态。
 
@@ -11,7 +11,7 @@
 | `final_selected` | 该实验包含已归档的预测产物 |
 | `reference` | 该实验作为历史对照或诊断参考保留 |
 | `not_selected` | 该实验未进入 `final_selected/` |
-| `engineering` | 该实验主要用于工程吞吐、数据管线或 bug 修复 |
+| `engineering` | 该实验主要用于工程吞吐、数据管线验证或工程修复 |
 
 ## 已归档预测产物
 
@@ -23,7 +23,7 @@
 | score | `direct_theme_soft` |
 | 状态 | `final_selected` |
 
-当前代码口径下的 holdout 对比：
+当前评估口径下的 holdout 对比：
 
 | 方案 | holdout period_return | excess_equal | rolling10 | latest10 | max_drawdown | competition_score |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -32,7 +32,7 @@
 | `theme baseline + direct_theme_soft` | 8.67% | 12.48% | 2.96% | 2.61% | -5.87% | 0.04353 |
 | `cluster multi-seed ensemble + direct_theme_soft` | 7.34% | 11.15% | 3.43% | -0.39% | -6.75% | 0.04403 |
 
-`20260604_theme_train` 原始评估中，`theme_ctx008 + direct_theme_medium` 的 holdout score 为 0.06506，latest10 为 4.62%。该结果来自 cluster 训练代码合入前的评估口径。`20260605_cluster_train/diagnostics/recomputed_baseline_vs_cluster_summary.csv` 记录当前代码口径下的 baseline-vs-cluster 重算结果。
+`20260604_theme_train` 原始评估中，`theme_ctx008 + direct_theme_medium` 的 holdout score 为 0.06506，latest10 为 4.62%。`20260605_cluster_train/diagnostics/recomputed_baseline_vs_cluster_summary.csv` 记录 baseline-vs-cluster 的重算结果。
 
 ## 评估字段
 
@@ -49,25 +49,27 @@
 跨实验比较字段：
 
 - validation 和 holdout 同时记录。
-- 代码口径和数据切分日期同时记录。
+- 评估口径和数据切分日期同时记录。
 - 原始评估结果和重算结果分开记录。
-- `final_selected/` 状态单独记录，目录日期不替代实验结果。
+- `final_selected/` 状态单独记录，目录日期不作为实验结果依据。
 
 ## 实验时间线
 
 | 实验组 | 类型 | 目标 | 关键产物 | 状态 |
 | --- | --- | --- | --- | --- |
 | `20260525_noleak_baseline` | model | 建立无泄漏 MSGCA baseline | `runs/`、评估输出 | `reference` |
-| `20260525_msgca_training_iterations` | engineering | 训练工程迭代和吞吐测试 | 多个 `run_*` 目录 | `engineering` |
-| `20260526_msgca_factor_aware_vs_mlp` | model | 比较 factor-aware MSGCA 和 MLP | factor-aware/MLP runs | `reference` |
-| `20260528_msgca_systematic_ablation` | ablation | 消融价格、文本、基本面、hidden size、topk | `h48/h64/h96`、topk 结果 | `reference` |
-| `20260528_factor_evaluation_fullrerun` | factor | 全量因子重跑和筛选 | 因子评估 summary | `reference` |
-| `20260529_gpt_factor_clean_final` | factor | GPT/mined 因子复核后清洗 | final feature summaries | `reference` |
-| `20260531_final_refit_scaler_resume` | engineering/model | checkpoint scaler 保存/加载修复，final 方案重训 | `final_refit_e20` 等 | `reference` |
-| `20260531_epoch_sweep_final` | ablation | 比较 5/8/10/20 epoch 和续训 | epoch checkpoint/eval | `reference` |
+| `20260525_training_iterations` | engineering | 训练工程迭代和吞吐测试 | 多个 run 目录 | `engineering` |
+| `20260526_factor_aware_vs_mlp` | model | 比较 factor-aware MSGCA 和 MLP | factor-aware/MLP runs | `reference` |
+| `20260528_first_wave_systematic_ablation` | ablation | 消融价格、文本、基本面、hidden size、topk | `h48/h64/h96`、topk 结果 | `reference` |
+| `20260528_factor_clean_after_current` | factor | 因子清洗后的组合消融 | 因子评估 summary | `reference` |
+| `20260529_gpt_final_after_factor_clean` | factor | GPT-mined 因子清洗后的最终候选 | final feature summaries | `reference` |
+| `20260529_gpt_final_soft` | factor/model | soft gate 最终候选对照 | final feature summaries | `reference` |
+| `20260531_scaler_final_retrain` | engineering/model | checkpoint scaler 保存/加载修复和 final 方案重训 | `final_refit_e20` 等 | `reference` |
+| `20260531_semantic_epoch_sweep` | ablation | 比较 5/8/10/20 epoch | epoch checkpoint/eval | `reference` |
+| `20260531_semantic_epoch_resume_sweep` | ablation | 比较续训 epoch | epoch checkpoint/eval | `reference` |
 | `20260601_loss_ablation` | ablation | return loss、topk loss、top10/top20 策略网格 | `strategy_recheck/` summaries | `reference` |
 | `20260602_strategy_window` | model | stagewise 多头训练和 random 10d window 监督 | `stagewise_top20_h48_swloss_v3` | `reference` |
-| `20260603_strict_direct_local` | model/score | strict score/loss 变量和直接训练 | strict context/loss/score 文件 | `reference` |
+| `20260603_strict_direct` | model/score | strict score/loss 变量和直接训练 | strict context/loss/score 文件 | `reference` |
 | `20260604_pasted_full_local` | ablation | 外部 loss/score 方案集补测 | `eval_all_txt/combined_competition_summary.csv` | `reference` |
 | `20260604_theme_train` | model | 主题强度上下文与主题训练 | `eval/combined_competition_summary.csv`、`final_selected/` | `final_selected` |
 | `20260604_theme_overlay_diagnostics` | diagnostics | 主题覆盖、行业覆盖、score overlay 诊断 | diagnostics 输出 | `reference` |
@@ -103,7 +105,7 @@
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | `theme_ctx008 + direct_theme_medium` | 11.54% | 15.35% | 5.02% | 4.62% | -4.64% | 0.06506 | `final_selected` |
 | `theme_ctx008 + direct_theme_soft` | 12.27% | 16.08% | 2.91% | 2.39% | -4.97% | 0.04760 | `reference` |
-| `theme_ctx002 + direct_theme_medium` | 10.89% | 14.70% | 5.00% | 未记录 | 未记录 | 0.06332 | `reference` |
+| `theme_ctx002 + direct_theme_medium` | 10.89% | 14.70% | 5.00% | TODO: 补充 | TODO: 补充 | 0.06332 | `reference` |
 
 预测产物：
 
@@ -133,9 +135,9 @@
 
 | 方案 | 状态 | 记录依据 |
 | --- | --- | --- |
-| baseline `final_score/y_score` 排序 | `reference` | 与 Top20/rolling 10-day 指标对齐不足 |
+| baseline `final_score/y_score` 排序 | `reference` | Top20/rolling 10-day 指标未进入归档产物 |
 | `stagewise_top20_h48_swloss_v3` | `reference` | validation/holdout 指标波动较大 |
-| strict A3/A4 单独变体 | `reference` | 早期只覆盖部分外部方案集 |
+| strict A3/A4 单独变体 | `reference` | 覆盖部分外部方案集 |
 | `20260604_pasted_full_local` A2/A4/A5 | `reference` | 未生成 `final_selected/` |
 | hard cluster rerank / cluster boost | `reference` | `strategy_layering_summary.csv` 记录 holdout score 低于 direct_theme_soft |
 | 2031/2041/2051 ensemble | `reference` | holdout score 0.04403，单 seed 2031 score 0.05848 |
@@ -146,13 +148,13 @@
 
 ```text
 data/experiments/msgca/YYYYMMDD_experiment_name/
-  README.md                         # 实验目的、配置、结果、状态
-  runs/                             # 训练 run、checkpoint、训练日志
-  eval/                             # validation/holdout/strategy summary
-  diagnostics/                      # 分桶、主题、行业、head calibration 诊断
-  strategy_layering/                # 策略网格或后处理实验
-  final_selected/                   # 已归档预测产物
-  scripts/                          # 队列脚本或复现脚本
+  README.md
+  runs/
+  eval/
+  diagnostics/
+  strategy_layering/
+  final_selected/
+  scripts/
 ```
 
 每个实验 README 记录字段：
@@ -165,5 +167,5 @@ data/experiments/msgca/YYYYMMDD_experiment_name/
 
 ## 数据口径
 
-- 历史实验可能使用不同代码口径，跨实验对比需注明评估脚本和数据切分。
+- 跨实验对比需注明评估脚本、配置和数据切分。
 - 预测文件按日期目录归档。

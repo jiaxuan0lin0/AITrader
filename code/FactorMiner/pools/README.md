@@ -1,4 +1,4 @@
-# FactorMiner Pools 使用手册
+# FactorMiner Pools
 
 `FactorMiner/pools/` 放具体因子池和新闻样本特征计算逻辑。这里是公式层：输入是已经标准化的 `DataFrame`，输出必须是带完整元信息的 `FactorResult`。
 
@@ -31,7 +31,7 @@ news_stock_map: news_id, stock_code
 news_scores: news_text_hash, sentiment_score, impact_score, risk_score, relevance_score, novelty_score, event_type
 ```
 
-行业中性派生需要 `industry`。如果启用中性化但缺少 `industry`，应直接报错或在 build 层显式关闭，不要自动构造伪行业。
+行业中性派生需要 `industry`。启用中性化时，如果输入缺少 `industry`，应在 build 层关闭中性派生或让校验不通过。
 
 ## 输出合同
 
@@ -121,11 +121,11 @@ decision_ts - window < publish_time <= decision_ts
 4. 对 rolling 因子设置完整窗口，避免 warmup 不足导致口径漂移。
 5. 若加入中性派生，确认缺行业股票不会被合并成同一伪行业。
 6. 补或更新 `code/tests/test_factor_pools.py`。
-7. 用 build 层命令写出 block，再跑 registry validate。
+7. 用 build 层命令写出 block，再运行 registry validate。
 
 ## 修改守则
 
 - pools 层不读取 parquet、不写文件、不更新注册表。
-- 不在这里做日期切片和截断参数；这些由 build 层负责。
+- 日期切片和截断参数由 build 层负责。
 - 不使用 `target_trade_date`、标签列或未来收益列。
 - 不把模型训练逻辑放入因子池。

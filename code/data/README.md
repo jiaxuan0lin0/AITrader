@@ -4,6 +4,8 @@
 
 数据层只负责原始数据同步、字段标准化、股票池过滤、新闻交易日对齐、样本索引和标签生成。因子构造、特征筛选、模型训练不放在这里。
 
+命令默认在 `aitrader` conda 环境中从 `code/` 目录执行。
+
 ## 目录与脚本
 
 | 文件 | 用途 |
@@ -13,11 +15,11 @@
 | `a_share_pipeline.py` | 读取本地原始数据，生成标准 parquet 数据表 |
 | `daily_update_a_share.sh` | 先同步原始数据，再运行 `a_share_pipeline.py` |
 | `load_a_share_env.sh` | 统一加载路径、账号和运行参数 |
-| `run_daily_loop.sh` | 容器内常驻循环，用于替代不可用的 crontab/systemd |
+| `run_daily_loop.sh` | 容器内常驻循环，用于执行每日任务 |
 | `start_daily_loop.sh` / `stop_daily_loop.sh` | 启停常驻每日循环 |
 | `install_daily_cron.sh` | 在支持 crontab 的环境里安装每日任务 |
-| `a_share_pipeline.env.example` | 环境变量模板；不要写真实账号 |
-| `secrets/` | 仓库内本地密钥目录，除 `README.md` 外被忽略 |
+| `a_share_pipeline.env.example` | 环境变量模板，不包含真实账号。 |
+| `secrets/` | 私有密钥目录，除 `README.md` 外不纳入版本控制。 |
 
 ## 默认路径
 
@@ -28,7 +30,7 @@
 | `AITRADER_DATASETS_ROOT` | `$AITRADER_DATA_ROOT/datasets` | 标准表、因子、特征和模型输出根目录 |
 | `AITRADER_LOG_DIR` | `$AITRADER_DATA_ROOT/logs` | 日志目录 |
 | `AITRADER_RUNTIME_DIR` | `$AITRADER_DATA_ROOT/runtime` | 锁、pid、运行状态目录 |
-| `AITRADER_SECRETS_DIR` | `$AITRADER_DATA_ROOT/secrets` | 账号和本地配置目录 |
+| `AITRADER_SECRETS_DIR` | `$AITRADER_DATA_ROOT/secrets` | 账号和私有配置目录 |
 
 ## 云端增量同步
 
@@ -44,7 +46,7 @@ bash data/daily_pull_cloud_data.sh --end-date 2026-05-31
 显式指定起止日期：
 
 ```bash
-python3 data/sync_ustc_webdav.py \
+python data/sync_ustc_webdav.py \
   --start-date 2026-05-21 \
   --end-date 2026-05-31
 ```
@@ -54,7 +56,7 @@ python3 data/sync_ustc_webdav.py \
 全量缺失补齐仍然可用：
 
 ```bash
-python3 data/sync_ustc_webdav.py
+python data/sync_ustc_webdav.py
 ```
 
 该模式会递归扫描远端目录，下载本地不存在的文件，不按日期过滤。只有显式传 `--delete` 时才会删除远端已不存在的本地文件。
@@ -95,12 +97,13 @@ bash data/stop_daily_loop.sh
 
 ## 账号与环境变量
 
-推荐把真实账号放在仓库内被忽略的本地目录，或通过 `A_SHARE_ENV_FILE` 指向仓库外文件：
+推荐把真实账号放在私有配置目录，或通过 `A_SHARE_ENV_FILE` 指向仓库外文件：
 
 ```bash
 cp data/a_share_pipeline.env.example data/secrets/a_share_pipeline.env
-vi data/secrets/a_share_pipeline.env
 ```
+
+编辑 `data/secrets/a_share_pipeline.env` 并填写 WebDAV 账号。
 
 至少需要配置：
 
@@ -138,13 +141,13 @@ A_SHARE_DAILY_TIME='08:00'
 只运行本地预处理：
 
 ```bash
-python3 data/a_share_pipeline.py
+python data/a_share_pipeline.py
 ```
 
 显式指定输入文件：
 
 ```bash
-python3 data/a_share_pipeline.py \
+python data/a_share_pipeline.py \
   --price-file data/raw_market_data/A股数据/daily/20260521.csv \
   --metric-file data/raw_market_data/A股数据/metric/20260521.csv \
   --moneyflow-file data/raw_market_data/A股数据/moneyflow/20260521.csv \

@@ -1,22 +1,22 @@
 # 数据目录
 
-`data/` 是 AITrader 的本地数据根目录，用于存放原始行情、标准数据表、因子、特征矩阵、模型产物、日志和运行状态。
+`data/` 是 AITrader 的数据根目录，用于存放原始行情、标准数据表、因子、特征矩阵、模型产物、日志和运行状态。
 
-大体积文件不提交到 Git。仓库只保留说明文档、实验摘要和必要配置。
+版本控制范围限于说明文档、轻量实验摘要和必要配置。大体积数据与运行产物作为外部资产管理。
 
 ## 目录说明
 
 | 目录 | 说明 | Git 策略 |
 | --- | --- | --- |
-| `raw_market_data/` | 外部存储同步得到的原始 A 股文件。 | 忽略 |
-| `datasets/processed/` | 标准化后的价格、估值、资金流、新闻、样本和标签表。 | 忽略 |
-| `datasets/factors/` | 日频因子、因子注册表、新闻评分和因子评估结果。 | 忽略 |
-| `datasets/features/` | 样本级特征块和特征注册表。 | 忽略 |
-| `models/` | 新闻评分使用的外部大模型权重。 | 忽略 |
+| `raw_market_data/` | 外部存储同步得到的原始 A 股文件。 | 外部资产 |
+| `datasets/processed/` | 标准化后的价格、估值、资金流、新闻、样本和标签表。 | 外部资产 |
+| `datasets/factors/` | 日频因子、因子注册表、新闻评分和因子评估结果。 | 外部资产 |
+| `datasets/features/` | 样本级特征块和特征注册表。 | 外部资产 |
+| `models/` | 新闻评分使用的外部大模型权重。 | 外部资产 |
 | `experiments/` | MSGCA 实验摘要、配置和最终运行元数据。 | 部分保留 |
-| `logs/` | 数据同步、训练、推理和新闻评分日志。 | 忽略 |
-| `runtime/` | live workflow 工作区、pid 文件和运行状态。 | 忽略 |
-| `secrets/` | 本机账号、密钥和私有环境变量。 | 忽略 |
+| `logs/` | 数据同步、训练、推理和新闻评分日志。 | 外部资产 |
+| `runtime/` | live workflow 工作区、pid 文件和运行状态。 | 外部资产 |
+| `secrets/` | 本机账号、密钥和私有环境变量。 | 外部资产 |
 
 ## 路径变量
 
@@ -41,17 +41,17 @@
 data/experiments/msgca/final/model/
 ```
 
-本地最终 checkpoint：
+最终 checkpoint 路径：
 
 ```text
 data/experiments/msgca/final/model/checkpoints/msgca_best.pt
 data/experiments/msgca/final/model/checkpoints/msgca_best.json
 ```
 
-该 checkpoint 不提交到 Git。跨机器部署时需要通过外部 artifact 存储单独传输。
+该 checkpoint 是大体积二进制产物，跨机器部署时需要通过外部 artifact 存储传输。
 
 ## 注意事项
 
-- `data/raw_market_data/`、`data/datasets/`、`data/models/`、`data/logs/`、`data/runtime/` 和 `data/secrets/` 属于本地资产。
-- `data/experiments/` 可保留轻量 CSV、JSON、YAML 摘要；checkpoint、parquet、日志和预测明细不提交。
-- 账号和密钥只放入被忽略的本地配置文件。
+- `data/raw_market_data/`、`data/datasets/`、`data/models/`、`data/logs/`、`data/runtime/` 和 `data/secrets/` 按外部资产管理。
+- `data/experiments/` 可保留轻量 CSV、JSON、YAML 摘要；checkpoint、parquet、日志和预测明细按外部资产管理。
+- 账号和密钥只放入私有配置文件。
