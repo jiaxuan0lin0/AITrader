@@ -1,0 +1,13 @@
+Upload these files for the regenerated AI research/design pass:
+
+1. /data/jiaxuanLin/AItrader/report/msgca_strict_loss_score_research_prompt.md
+2. /data/jiaxuanLin/AItrader/report/msgca_strict_variable_audit.md
+
+Do not use the previous research response as the main instruction, because it introduced concept variables before proving field availability.
+
+Expected AI output:
+- Variable legality table first.
+- Directly implementable loss/score using only currently available fields.
+- Exact-build plan for fields that can be reconstructed, especially NEWS_exact.
+- Approval-required plan for ambiguous variables such as industry_relative, regime_momentum, moneyflow_confirm, P_moderate, HP/OH/BR.
+- No final S5/trend-pullback formula marked ready-to-implement unless every component is direct_now or build_exact_first.

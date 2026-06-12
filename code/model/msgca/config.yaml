@@ -1,0 +1,108 @@
+paths:
+  processed_dir: ../data/datasets/processed
+  feature_registry_path: ../data/datasets/features/feature_registry.json
+  evaluation_dir: ../data/datasets/factors/evaluation/final
+  model_root: ../data/experiments/msgca/ad_hoc
+
+data:
+  lookback: 60
+  primary_label: label_next_open_return
+  secondary_label: label_next_vwap_return
+  strict_lookback: true
+  fast_loader: true
+  use_polars: true
+  price_window_cache: memory
+  price_window_cache_dir:
+  train_start: "2019-01-01"
+  train_end: "2025-09-30"
+  validation_start: "2025-10-01"
+  validation_end: "2025-12-31"
+  holdout_start: "2026-01-01"
+  price_columns:
+    - open
+    - high
+    - low
+    - close
+    - vwap
+    - volume
+    - amount
+    - mf_net_amount_ratio
+    - mf_main_net_amount_ratio
+    - mf_small_order_pressure
+  text_prefixes:
+    - news_
+    - market_news
+  fundamental_prefixes:
+    - metric_
+    - mf_
+    - alpha158_
+
+model:
+  hidden_dim: 64
+  n_heads: 4
+  dropout: 0.1
+  price_layers: 2
+  fusion_layers: 1
+  factor_encoder: simple
+  factor_layers: 2
+  factor_group_layers: 1
+  factor_group_prototypes: 1
+  factor_group_source: selected_blocks
+  factor_gate_activation: softmax
+  enable_price: true
+  enable_news: true
+  enable_fundamental: true
+  use_gate: true
+  use_cross_attention: true
+  use_factor_gate: true
+
+train:
+  seed: 2026
+  epochs: 5
+  batch_days: 1
+  final_validate: false
+  validate_each_epoch: false
+  validation_interval: 0
+  max_pairs_per_day: 4096
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  amp: true
+  dataloader_workers: 4
+  dataloader_pin_memory: true
+  dataloader_prefetch_factor: 2
+  dataloader_persistent_workers: true
+  competition_validate: true
+  competition_window_days: 10
+  competition_recent_window_count: 5
+  best_checkpoint_metric: competition_score
+  best_checkpoint_mode: max
+  save_epoch_checkpoints: true
+  early_stop_min_epochs: 0
+  early_stop_patience: 0
+  restore_best_checkpoint: false
+  validation_score_col: y_score
+  validation_score_variant:
+  rank_loss_weight: 1.0
+  return_loss_weight: 0.1
+  direction_loss_weight: 0.05
+  topk_return_loss_weight: 0.0
+  return_secondary_weight: 0.0
+  topk_secondary_weight: 0.0
+  topk_return_k: 20
+  topk_return_mode: soft_equal_topk
+  topk_temperature: 0.1
+  gate_entropy_weight: 0.001
+  rank_score_field: y_score
+  topk_score_field: y_score
+  aux_topk_return_losses: []
+  stages: []
+  time_weight_bins: []
+  normalize_time_weights: false
+
+strategy:
+  initial_cash: 1000000.0
+  top_n: 20
+  daily_replace_k: 3
+  fee_rate: 0.0003
+  slippage_rate: 0.0005
+  full_investment: true

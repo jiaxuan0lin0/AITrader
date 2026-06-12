@@ -1,0 +1,5 @@
+r020_k20_topk003
+r020_k20_topk008
+r020_k20_vwap50
+r020_k20_tw2025
+r020_k20_twrecent

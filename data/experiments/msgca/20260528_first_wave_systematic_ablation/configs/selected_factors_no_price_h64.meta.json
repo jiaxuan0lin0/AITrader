@@ -1,0 +1,7 @@
+{
+  "name": "selected_factors_no_price_h64",
+  "overrides": {
+    "model.enable_price": false,
+    "train.topk_return_loss_weight": 0.02
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "fa_topk010_h64",
+  "overrides": {
+    "train.topk_return_loss_weight": 0.1
+  }
+}

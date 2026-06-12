@@ -1,0 +1,12 @@
+base_config: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260604_pasted_full_local/runs/a2_l1_only_scratch_seed2031/config.yaml
+theme_context_cache: /data/jiaxuanLin/AItrader/data/datasets/features/blocks/sample/strict_context_theme_sample.parquet
+runs:
+- run_id: theme_ctx002_scratch_seed2031
+  context_score_topk_loss_weight: 0.02
+  config: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260604_theme_train/runs/theme_ctx002_scratch_seed2031/config.yaml
+- run_id: theme_ctx005_scratch_seed2031
+  context_score_topk_loss_weight: 0.05
+  config: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260604_theme_train/runs/theme_ctx005_scratch_seed2031/config.yaml
+- run_id: theme_ctx008_scratch_seed2031
+  context_score_topk_loss_weight: 0.08
+  config: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260604_theme_train/runs/theme_ctx008_scratch_seed2031/config.yaml

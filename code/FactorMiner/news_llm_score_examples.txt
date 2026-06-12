@@ -1,0 +1,212 @@
+Qwen3-32B-AWQ 新闻评分样例报告
+生成时间: 2026-05-19T09:19:14.106824+00:00
+模型: qwen3-news
+prompt: news_score
+样例数量: 10
+
+========================================================================================
+样例 1
+publish_time: 2026-05-18 00:10:34
+news_id: 051c923db1652450a85dd1904208a203c571a75fa1dd5d26730a402009ad7847
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【以政府批准在原近东救济工程处总部建国防机构 哈马斯：强烈谴责】当地时间17日，以色列政府批准了一项新计划，将在位于东耶路撒冷的原联合国近东巴勒斯坦难民救济和工程处（近东救济工程处）总部所在地建立新的以色列国防军博物馆、征兵处和国防部长办公室。 以政府批准在原近东救济工程处总部建国防机构 哈马斯：强烈谴责
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.3
+  risk_score: 0.7
+  relevance_score: 0.5
+  novelty_score: 0.8
+  event_type: geopolitics
+  horizon: short
+  summary: 以色列政府批准在原近东救济工程处总部建国防机构
+
+========================================================================================
+样例 2
+publish_time: 2026-05-18 00:15:42
+news_id: 767434005b3bc3d642f8ddd12193e9b51f63cc7beb9cc1178c3b254f44fb7e54
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+Publicis将以总计22亿美元的企业价值收购Liveramp。 Publicis将以总计22亿美元的企业价值收购Liveramp
+
+LLM评分:
+  sentiment_score: 0.0
+  impact_score: 0.0
+  risk_score: 0.0
+  relevance_score: 0.0
+  novelty_score: 0.0
+  event_type: other
+  horizon: unknown
+  summary: Publicis将以总计22亿美元的企业价值收购Liveramp
+
+========================================================================================
+样例 3
+publish_time: 2026-05-18 00:34:50
+news_id: 44e52b49ccb2e01eed27e62504b6dc37b3141925f8ac7ba50c60d3da16fbdec5
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【阿联酋外长与国际原子能机构总干事就无人机袭击事件通电话】当地时间17日，阿联酋副总理兼外交部长阿卜杜拉与国际原子能机构总干事格罗西通电话。 阿联酋外长与国际原子能机构总干事就无人机袭击事件通电话
+
+LLM评分:
+  sentiment_score: 0.0
+  impact_score: 0.0
+  risk_score: 0.0
+  relevance_score: 0.0
+  novelty_score: 0.0
+  event_type: other
+  horizon: unknown
+  summary: 阿联酋外长与国际原子能机构总干事就无人机袭击事件通电话
+
+========================================================================================
+样例 4
+publish_time: 2026-05-18 00:48:28
+news_id: 97464b27c175129b0d39a773e50d4c568401e7ca820a48e5c0022d8049f73bee
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【冈拉克：美联储根本不可能降息】DoubleLine Capital首席执行官冈拉克表示，投资者不会在下次美联储政策会议上看到降息 。“此前人们预期今年会有两次降息，但通胀市场却根本不配合，”冈拉克表示，“在我看来，当两年期美债收益率比联邦基金利率高出近50个基点时，根本不可能进行降息。”冈德拉克称，刚刚获确认为美联储主席的凯文·沃什在一个“艰难时期”上任。冈拉克说：“DoubleLine的模型表明，下一个CPI指数的首位数字将为‘4字头’。” 冈拉克：美联储根本不可能降息
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.7
+  risk_score: 0.8
+  relevance_score: 0.6
+  novelty_score: 0.9
+  event_type: rates
+  horizon: short
+  summary: 冈拉克称美联储根本不可能降息
+
+========================================================================================
+样例 5
+publish_time: 2026-05-18 01:00:23
+news_id: 58cf5bf10ac24adf9b7339073d63af0fb85758f0cedd5d619a1f276f778b79ad
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【扎波罗热核电站运输车间遭乌军炮击】当地时间5月17日，扎波罗热核电站发布消息称，乌克兰武装部队使用火炮袭击了该核电站运输车间，导致车间屋顶、窗户及员工巴士受损。 扎波罗热核电站运输车间遭乌军炮击
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.3
+  risk_score: 0.7
+  relevance_score: 0.5
+  novelty_score: 0.8
+  event_type: geopolitics
+  horizon: short
+  summary: 扎波罗热核电站遭乌军炮击，存在核泄漏风险
+
+========================================================================================
+样例 6
+publish_time: 2026-05-18 01:20:15
+news_id: 077183d1ec28e08052d4118b98befe4f2533648c20d4fcd3c1e31bed3bdd4eee
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【以色列军方警告兵力缺口约为1.2万人并将进一步扩大】总台记者当地时间5月17日晚获悉，以色列军方再次警告称，由于近年来多线作战给常备军和预备役部队造成了巨大压力，其面临兵力缺口约为12000人，其中包括7000名作战部队士兵。以军方表示，除非政府通过立法解决军队人员短缺问题，否则由于2027年初义务兵役制的缩短，这一缺口只会进一步扩大。 以色列军方警告兵力缺口约为1.2万人并将进一步扩大
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.3
+  risk_score: 0.8
+  relevance_score: 0.6
+  novelty_score: 0.7
+  event_type: geopolitics
+  horizon: short
+  summary: 以色列军方警告兵力缺口扩大加剧地缘风险
+
+========================================================================================
+样例 7
+publish_time: 2026-05-18 01:35:49
+news_id: a312ba705e11fd32ef4ac2ca99c80c19385e21a2238fceda0cf61b959a78632d
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【航运巨头达飞轮船：已决定暂停所有往返古巴的订舱业务 直至另行通知】航运巨头达飞轮船称，已决定暂停所有往返古巴的订舱业务，直至另行通知。此项决定是基于美国于5月1日发布的一项行政命令。 航运巨头达飞轮船：已决定暂停所有往返古巴的订舱业务 直至另行通知
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.3
+  risk_score: 0.5
+  relevance_score: 0.6
+  novelty_score: 0.8
+  event_type: shipping
+  horizon: short
+  summary: 达飞暂停古巴航线业务，受美国行政命令影响
+
+========================================================================================
+样例 8
+publish_time: 2026-05-18 01:44:55
+news_id: 8dcb4f44ab719585bf02a5ef460f4622b53b812c765397777515d4bd52b07b6a
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【以媒：内塔尼亚胡与特朗普通话 讨论重启对伊战事可能性】以色列媒体17日报道，以色列总理内塔尼亚胡与美国总统特朗普当天通电话，讨论重启对伊朗军事行动的可能性。 以媒：内塔尼亚胡与特朗普通话 讨论重启对伊战事可能性
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.6
+  risk_score: 0.8
+  relevance_score: 0.7
+  novelty_score: 0.9
+  event_type: geopolitics
+  horizon: short
+  summary: 以美讨论重启对伊战事，地缘风险上升
+
+========================================================================================
+样例 9
+publish_time: 2026-05-18 01:57:24
+news_id: acbb11d0c010d5bc141f8cf70702e76b599988f46a21d418edc954f22059d653
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【特朗普称如果伊朗不迅速行动 “将一无所有”】美国总统特朗普17日在社交媒体发文称，如果伊朗不迅速行动，“将一无所有”。 特朗普称如果伊朗不迅速行动 “将一无所有”
+
+LLM评分:
+  sentiment_score: -1.0
+  impact_score: 0.3
+  risk_score: 0.8
+  relevance_score: 0.6
+  novelty_score: 0.7
+  event_type: geopolitics
+  horizon: short
+  summary: 特朗普警告伊朗不行动将一无所有
+
+========================================================================================
+样例 10
+publish_time: 2026-05-18 02:23:10
+news_id: e17d1df6df65b15fd6b0c39fd91972d9f0e0fa5efd6905a2ed87b9c8e08e3816
+matched_stock_count: 0
+matched_stock_codes: 
+
+原文:
+【卡塔尔首相与伊朗外长通电话 讨论地区局势】当地时间5月17日，卡塔尔外交部发表声明称，卡塔尔首相兼外交大臣穆罕默德当天与伊朗外长阿拉格齐通电话，重点就地区局势交换意见。 卡塔尔首相与伊朗外长通电话 讨论地区局势
+
+LLM评分:
+  sentiment_score: 0.0
+  impact_score: 0.0
+  risk_score: 0.0
+  relevance_score: 0.0
+  novelty_score: 0.0
+  event_type: other
+  horizon: unknown
+  summary: 卡塔尔首相与伊朗外长通电话 讨论地区局势
+
+========================================================================================
+初步人工评估:
+1. 当前口径保留海外宏观、地缘冲突对A股的间接传导。
+2. event_type 已能区分 geopolitics、rates、shipping 等类别。
+3. summary 保留用于审计，不进入默认训练特征。
+4. 后续建因子时保留原始分数和交互项，让监督模型学习不同新闻类型的真实权重。

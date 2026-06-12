@@ -1,0 +1,11 @@
+{
+  "job_id": "20260526_093446_factor_aware_and_strong_mlp",
+  "session": "msgca_upgrade_20260526_093446",
+  "pipeline": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/scripts/20260526_093446_factor_aware_and_strong_mlp.sh",
+  "log": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/logs/20260526_093446_factor_aware_and_strong_mlp.log",
+  "factor_aware_run": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/runs/20260526_093446_factor_aware_e5",
+  "factor_aware_config": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/configs/20260526_093446_factor_aware_e5.yaml",
+  "strong_factor_mlp_run": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/runs/20260526_093446_strong_factor_mlp_e5",
+  "strong_factor_mlp_config": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/configs/20260526_093446_strong_factor_mlp_e5.yaml",
+  "strong_factor_mlp_script": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260526_factor_aware_vs_mlp/scripts/20260526_093446_factor_aware_and_strong_mlp_strong_factor_mlp.py"
+}

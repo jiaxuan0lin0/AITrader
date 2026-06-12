@@ -1,0 +1,30 @@
+# Local credentials and runtime config
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+!*.env.example
+!*.example.env
+/a_share_pipeline.env
+/data/a_share_pipeline.env
+/data/secrets/*
+!/data/secrets/README.md
+
+# Generated Python files
+__pycache__/
+*.py[cod]
+
+# Local data, pipeline outputs, and runtime files
+/a_share_raw/
+/a_share_pipeline/
+/backup/
+/data/a_share_raw/
+/data/a_share_pipeline/
+/datasets/*
+!/datasets/.gitignore
+*.log
+*.pid
+*.lock
+*.part
+.pytest_cache/

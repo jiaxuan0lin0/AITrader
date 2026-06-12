@@ -1,0 +1,227 @@
+AItrader MSGCA experiment data summary
+=====================================
+
+DATASET: dataset_report_mapping
+dataset,report_part,table_or_figure,role
+final_summary,摘要与综合结论,核心指标卡片,final_model_key_metrics
+time_splits,数据处理与防泄露约束,数据切分设置表,split_definition
+metric_definitions,实验整体设计,评估指标说明表,metric_explanation
+backtest_rule,回测与交易规则,交易规则说明表或文字数据,backtest_configuration
+experiment_logic_chain,实验整体设计,实验推进逻辑图或表,experiment_flow
+strategy_output_categories,策略输出实验,策略输出实验分类表,strategy_experiment_taxonomy
+strategy_output_representative_results,策略输出实验,策略输出实验代表性结果表,strategy_result_summary
+input_feature_ablation,实验一：输入与特征消融,输入与特征消融结果表,input_source_ablation_results
+topk_loss_ablation,实验二：TopK Loss 权重消融,TopK loss 权重消融表,objective_weight_ablation_results
+prototype_gate_ablation,实验三：Prototype 与 Gate 消融,Prototype 与 factor gate 消融表,structure_ablation_results
+hidden_size_ablation,实验四：Hidden Size 消融,Hidden size 消融表,model_capacity_ablation_results
+reviewed_feature_gate_retrain,实验五：最新特征复训与 Gate 函数对比,最新特征复训与 Gate 函数对比表,feature_refresh_gate_results
+stagewise_rolling10_training,实验六：多头分阶段训练与 Rolling-10 监督,多头分阶段训练结果表,stagewise_training_results
+strict_loss_score_variants,实验七：严格字段约束下的 Loss/Score 方案,严格字段约束 loss/score 方案表,strict_field_score_loss_results
+theme_context_training,实验八：主题上下文训练,主题上下文训练结果表,theme_context_results
+late_stage_framework_comparison,实验九：动态聚类上下文训练,主要框架变体统一 holdout 指标表,late_stage_model_comparison
+dynamic_cluster_context_training,实验九：动态聚类上下文训练,动态聚类上下文补充表,cluster_context_results
+appendix_experiment_matrix,附录：主要实验矩阵,实验模块与结论汇总表,appendix_summary_matrix
+plot_ready_main_bars,图表数据,主要框架变体收益柱状图,plot_data_main_return_bars
+plot_ready_risk_return,图表数据,风险收益散点图,plot_data_risk_return
+plot_ready_rankic_vs_return,图表数据,RankIC 与组合收益关系图,plot_data_rankic_return
+plot_ready_theme_context,图表数据,主题上下文参数对比图,plot_data_theme_context
+plot_ready_strategy_score_blending,图表数据,策略分数融合对比图,plot_data_strategy_blending
+
+DATASET: final_summary
+metric,value,unit
+period_return,12.56,percent
+excess_vs_equal_weight,16.36,percent
+rolling10_mean,4.32,percent
+latest10,0.70,percent
+max_drawdown,-5.68,percent
+competition_score,0.05848,score
+
+DATASET: time_splits
+split,start_date,end_date,usage
+train_set,2019-01-01,2025-09-30,fit_model_and_scaler
+validation_set,2025-10-01,2025-12-31,model_selection_and_hyperparameter_comparison
+holdout,2026-01-01,,out_of_sample_evaluation
+unified_holdout_window,2026-05-06,2026-06-01,late_stage_framework_comparison
+
+DATASET: metric_definitions
+metric,definition
+RankIC,daily_cross_sectional_spearman_correlation_between_model_score_and_realized_return_then_averaged
+period_return,top20_equal_weight_portfolio_return_over_the_evaluation_period
+excess_vs_equal_weight,top20_portfolio_return_minus_equal_weight_market_return
+rolling10,mean_return_of_rolling_10_trading_day_top20_windows
+latest10,return_of_the_latest_10_trading_day_window
+max_drawdown,maximum_peak_to_trough_portfolio_drawdown
+competition_score,internal_combined_score_using_return_rolling10_and_drawdown_related_terms
+
+DATASET: backtest_rule
+field,value
+initial_capital,1000000
+portfolio_size,20
+initial_buy,top20_equal_weight_by_model_score
+daily_sell_count,3
+daily_buy_count,3
+target_position,fully_invested_top20
+constraints,fee_slippage_t_plus_1
+not_fully_simulated,limit_up_down_suspension_order_book_depth_executable_volume_fill_probability
+
+DATASET: experiment_logic_chain
+stage,core_question,main_variables
+input_ablation,which_input_sources_provide_ranking_signal,price_only_factor_only_news_price_all_selected
+objective_ablation,whether_topk_loss_improves_top20_return,topk_loss_weight
+structure_ablation,how_prototype_gate_and_capacity_affect_returns,prototype_factor_gate_hidden_size
+strategy_output,how_model_scores_convert_to_tradable_portfolios,topn_rebalance_score_blend_cap_cluster_boost
+short_window_alignment,whether_training_matches_10_day_competition_window,rolling10_stagewise_score_variants
+market_state_modeling,whether_theme_and_cluster_context_explain_recent_returns,theme_context_dynamic_cluster_context
+
+DATASET: strategy_output_categories
+category,main_variables,statistical_purpose
+backtest_scope,holdout_window_10day_window_latest_short_window,check_backtest_stability_and_avoid_single_long_period_selection
+portfolio_construction,topn_daily_rebalance_count_tplus1_turnover,compare_concentrated_vs_diversified_portfolios
+score_blending,y_score_return_pred_blend_direction,measure_information_from_rank_return_and_direction_heads
+constraints_and_rerank,market_cap_filter_cap_bonus_cluster_boost_fixed_cluster_filter,check_tradeability_and_short_window_stability
+
+DATASET: strategy_output_representative_results
+category,variant,topn,rebalancing,period_return_pct,excess_vs_equal_weight_pct,rolling_or_latest,max_drawdown_pct
+backtest_scope,factor_aware_holdout,20,3,7.30,,,-13.27
+backtest_scope,short_window_2026_05_21,20,3,-4.77,,,-5.77
+portfolio_construction,z_y_plus_return,5,0,8.93,13.12,,
+portfolio_construction,y_score,20,3,-5.16,-0.97,rolling10_1.21,-6.15
+score_blending,return_pred,5,1,50.30,46.15,latest10_-4.66,-20.03
+score_blending,blend_y25_ret75,5,1,46.67,42.53,latest10_-2.03,-18.17
+constraints_and_rerank,return_pred_plus_cap,20,5,20.94,9.04,latest10_1.31,-8.70
+constraints_and_rerank,cluster_boostlight,20,rule,5.33,9.14,rolling10_1.64,-6.21
+constraints_and_rerank,fixed_cluster_filter_low,20,rule,-7.82,-4.01,,-15.32
+constraints_and_rerank,fixed_cluster_filter_high,20,rule,-13.86,-10.06,,-18.51
+
+DATASET: input_feature_ablation
+variant,validation_rankic,validation_return_pct,validation_sharpe,holdout_rankic,holdout_return_pct,holdout_excess_pct,holdout_sharpe
+price_only,0.0406,7.29,1.75,0.0208,-3.61,-15.08,-0.39
+factor_only,0.0734,4.04,1.10,0.0450,6.92,-4.55,0.97
+manual_price,0.0665,3.93,1.09,0.0415,4.17,-7.30,0.64
+news_price,0.0444,1.27,0.39,0.0227,-0.30,-11.77,0.07
+all_selected,0.0614,6.04,1.63,0.0414,7.30,-4.16,1.03
+factor_aware_h48,0.0680,5.10,1.27,0.0424,11.86,0.40,1.59
+
+DATASET: topk_loss_ablation
+variant,topk_loss_weight,rankic,portfolio_return_pct,excess_vs_equal_weight_pct
+topk000,0.00,0.0415,7.24,-4.23
+topk002,0.02,0.0414,7.30,-4.16
+topk005,0.05,0.0413,6.41,-5.05
+
+DATASET: prototype_gate_ablation
+variant,prototype,gate,rankic,portfolio_return_pct,excess_vs_equal_weight_pct
+plain,false,true,0.0413,6.41,-5.05
+proto2,true,true,0.0427,5.79,-5.68
+no_gate,true,false,0.0454,-0.75,-12.22
+
+DATASET: hidden_size_ablation
+variant,hidden_size,rankic,portfolio_return_pct,excess_vs_equal_weight_pct
+h48,48,0.0424,11.86,0.40
+h64,64,0.0427,5.79,-5.68
+h96,96,0.0432,-0.37,-11.83
+
+DATASET: reviewed_feature_gate_retrain
+variant,gate,rankic,portfolio_return_pct,excess_vs_equal_weight_pct,sharpe
+sparse,sparsemax,-0.0472,-1.81,-4.04,-2.29
+soft,softmax,-0.0479,-1.69,-3.92,-2.55
+soft_recent,softmax,-0.0479,-1.69,-3.92,-2.55
+
+DATASET: stagewise_rolling10_training
+variant,period_return_pct,excess_vs_equal_weight_pct,max_drawdown_pct
+stagewise_final,-7.26,-0.35,-8.20
+swloss_v3,-0.42,3.38,-8.28
+
+DATASET: strict_loss_score_variants
+variant,period_return_pct,excess_vs_equal_weight_pct,rolling10_pct,latest10_pct,max_drawdown_pct,competition_score
+l1_multihead,2.57,6.38,4.35,0.08,-7.02,0.04838
+exact_news_final,5.71,9.52,3.94,-3.05,-7.97,0.04528
+exact_news_score,6.51,10.32,2.99,1.41,-8.68,0.03876
+s5_rerank,1.48,5.29,-1.07,-0.45,-8.27,-0.00433
+
+DATASET: theme_context_training
+variant,context_weight,score_mode,period_return_pct,excess_vs_equal_weight_pct,rolling10_pct,latest10_pct,max_drawdown_pct,competition_score
+ctx002_medium,0.02,medium,10.89,14.70,5.00,4.33,-5.59,0.06332
+ctx005_medium,0.05,medium,2.42,6.22,2.88,-7.57,-11.95,0.02854
+ctx008_medium,0.08,medium,11.54,15.35,5.02,4.62,-4.64,0.06506
+ctx008_soft,0.08,soft,12.27,16.08,2.91,2.39,-4.97,0.04760
+
+DATASET: late_stage_framework_comparison
+variant,period_return_pct,excess_vs_equal_weight_pct,rolling10_pct,latest10_pct,max_drawdown_pct,competition_score
+stagewise_final,-7.26,-0.35,,,-8.20,
+l1_multihead,2.57,6.38,4.35,0.08,-7.02,0.04838
+theme_ctx008_medium,11.54,15.35,5.02,4.62,-4.64,0.06506
+baseline_medium,7.73,11.53,3.19,4.13,-5.13,0.04517
+cluster_inrank020_soft,12.56,16.36,4.32,0.70,-5.68,0.05848
+cluster_ensemble_soft,7.34,11.15,3.43,-0.39,-6.75,0.04403
+
+DATASET: dynamic_cluster_context_training
+variant,cluster_context,score_mode,ensemble,period_return_pct,excess_vs_equal_weight_pct,rolling10_pct,latest10_pct,max_drawdown_pct,competition_score
+cluster_inrank020_soft,true,soft,false,12.56,16.36,4.32,0.70,-5.68,0.05848
+cluster_ensemble_soft,true,soft,true,7.34,11.15,3.43,-0.39,-6.75,0.04403
+
+DATASET: appendix_experiment_matrix
+experiment_module,main_comparison,representative_variant,main_numeric_evidence
+input_ablation,price_only_factor_only_news_price_all_selected,factor_aware_h48,holdout_return_11.86_excess_0.40
+topk_loss,weights_0_0.02_0.05,topk002,return_7.30_excess_-4.16
+structure_ablation,plain_proto2_no_gate,gate_enabled,no_gate_rankic_0.0454_but_return_-0.75
+capacity_ablation,h48_h64_h96,h48,return_11.86_excess_0.40
+reviewed_feature_retrain,sparsemax_softmax_recent_weight,soft,return_-1.69_excess_-3.92
+stagewise_training,stagewise_final_swloss_v3,swloss_v3,period_return_-0.42_excess_3.38
+strict_field_variants,l1_multihead_exact_news_s5_rerank,l1_multihead,competition_score_0.04838
+theme_context,ctx002_ctx005_ctx008_medium_soft,ctx008_medium,competition_score_0.06506
+dynamic_cluster,cluster_context_ensemble_hard_filter,cluster_inrank020_soft,period_return_12.56_excess_16.36
+
+DATASET: plot_ready_main_bars
+variant,period_return_pct,excess_vs_equal_weight_pct
+stagewise_final,-7.26,-0.35
+l1_multihead,2.57,6.38
+theme_ctx008_medium,11.54,15.35
+baseline_medium,7.73,11.53
+cluster_inrank020_soft,12.56,16.36
+cluster_ensemble_soft,7.34,11.15
+
+DATASET: plot_ready_risk_return
+variant,period_return_pct,max_drawdown_pct,competition_score
+l1_multihead,2.57,-7.02,0.04838
+exact_news_final,5.71,-7.97,0.04528
+exact_news_score,6.51,-8.68,0.03876
+s5_rerank,1.48,-8.27,-0.00433
+ctx002_medium,10.89,-5.59,0.06332
+ctx005_medium,2.42,-11.95,0.02854
+ctx008_medium,11.54,-4.64,0.06506
+ctx008_soft,12.27,-4.97,0.04760
+baseline_medium,7.73,-5.13,0.04517
+cluster_inrank020_soft,12.56,-5.68,0.05848
+cluster_ensemble_soft,7.34,-6.75,0.04403
+
+DATASET: plot_ready_rankic_vs_return
+variant,rankic,portfolio_return_pct,excess_vs_equal_weight_pct
+price_only,0.0208,-3.61,-15.08
+factor_only,0.0450,6.92,-4.55
+manual_price,0.0415,4.17,-7.30
+news_price,0.0227,-0.30,-11.77
+all_selected,0.0414,7.30,-4.16
+factor_aware_h48,0.0424,11.86,0.40
+topk000,0.0415,7.24,-4.23
+topk002,0.0414,7.30,-4.16
+topk005,0.0413,6.41,-5.05
+proto2,0.0427,5.79,-5.68
+no_gate,0.0454,-0.75,-12.22
+h48,0.0424,11.86,0.40
+h64,0.0427,5.79,-5.68
+h96,0.0432,-0.37,-11.83
+
+DATASET: plot_ready_theme_context
+variant,context_weight,period_return_pct,rolling10_pct,latest10_pct,competition_score
+ctx002_medium,0.02,10.89,5.00,4.33,0.06332
+ctx005_medium,0.05,2.42,2.88,-7.57,0.02854
+ctx008_medium,0.08,11.54,5.02,4.62,0.06506
+ctx008_soft,0.08,12.27,2.91,2.39,0.04760
+
+DATASET: plot_ready_strategy_score_blending
+variant,topn,rebalancing,period_return_pct,excess_vs_equal_weight_pct,max_drawdown_pct
+z_y_plus_return,5,0,8.93,13.12,
+y_score,20,3,-5.16,-0.97,-6.15
+return_pred,5,1,50.30,46.15,-20.03
+blend_y25_ret75,5,1,46.67,42.53,-18.17
+return_pred_plus_cap,20,5,20.94,9.04,-8.70

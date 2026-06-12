@@ -1,0 +1,83 @@
+paths:
+  processed_dir: /data/jiaxuanLin/AItrader/data/datasets/processed
+  feature_registry_path: /data/jiaxuanLin/AItrader/data/datasets/features/feature_registry.json
+  evaluation_dir: /data/jiaxuanLin/AItrader/data/datasets/factors/evaluation/select_20160105_20260520
+  model_root: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260529_gpt_final_soft/runs/20260529_gpt_final_soft_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520
+data:
+  lookback: 60
+  primary_label: label_next_open_return
+  secondary_label: label_next_vwap_return
+  strict_lookback: true
+  fast_loader: true
+  use_polars: true
+  train_start: '2019-01-01'
+  train_end: '2026-05-20'
+  validation_start: '2026-05-01'
+  validation_end: '2026-05-20'
+  holdout_start: '2026-05-01'
+  smoke_features: []
+  price_columns:
+  - open
+  - high
+  - low
+  - close
+  - vwap
+  - volume
+  - amount
+  - mf_net_amount_ratio
+  - mf_main_net_amount_ratio
+  - mf_small_order_pressure
+  text_prefixes:
+  - news_
+  - market_news
+  fundamental_prefixes:
+  - metric_
+  - mf_
+  - alpha158_
+model:
+  hidden_dim: 48
+  n_heads: 4
+  dropout: 0.1
+  price_layers: 1
+  fusion_layers: 1
+  factor_encoder: factor_aware
+  factor_layers: 1
+  factor_group_layers: 1
+  factor_group_prototypes: 2
+  factor_group_source: selected_blocks
+  factor_gate_activation: softmax
+  max_price_variables: 256
+  max_text_features: 512
+  max_fundamental_features: 2048
+  enable_price: true
+  enable_news: true
+  enable_fundamental: true
+  use_gate: true
+  use_cross_attention: true
+  use_factor_gate: true
+train:
+  seed: 2026
+  epochs: 5
+  batch_days: 1
+  final_validate: true
+  validate_each_epoch: false
+  validation_interval: 0
+  max_pairs_per_day: 4096
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  amp: true
+  rank_loss_weight: 1.0
+  return_loss_weight: 0.1
+  direction_loss_weight: 0.05
+  topk_return_loss_weight: 0.05
+  topk_temperature: 0.1
+  gate_entropy_weight: 0.001
+  time_weight_bins: []
+  normalize_time_weights: false
+strategy:
+  initial_cash: 1000000.0
+  top_n: 20
+  daily_replace_k: 3
+  fee_rate: 0.0003
+  slippage_rate: 0.0005
+  full_investment: true

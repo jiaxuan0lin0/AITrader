@@ -1,0 +1,100 @@
+{
+  "run_dir": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_resume_sweep/runs/20260531_semantic_resume_softgate_e10_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520",
+  "config": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_resume_sweep/configs/20260531_semantic_resume_softgate_e10/gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520.yaml",
+  "checkpoint": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_resume_sweep/runs/20260531_semantic_resume_softgate_e10_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520/checkpoints/msgca_latest.pt",
+  "train_log": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_semantic_epoch_resume_sweep/runs/20260531_semantic_resume_softgate_e10_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520/train_log.csv",
+  "validation_metrics": {
+    "rank_ic_mean": -0.0396143262,
+    "rank_ic_std": 0.1035793945,
+    "rank_ic_ir": -0.3824537341,
+    "direction_accuracy": 0.4923890728,
+    "topk_return_mean": 0.0001613041,
+    "day_count": 11.0
+  },
+  "holdout_metrics": {
+    "rank_ic_mean": -0.0396143262,
+    "rank_ic_std": 0.1035793945,
+    "rank_ic_ir": -0.3824537341,
+    "direction_accuracy": 0.4923890728,
+    "topk_return_mean": 0.0001613041,
+    "day_count": 11.0
+  },
+  "validation_backtest": {
+    "initial_cash": 1000000.0,
+    "final_nav": 974372.3341093432,
+    "day_count": 11.0,
+    "period_return": -0.025627665890656792,
+    "ten_day_return": NaN,
+    "annual_return": -0.44830541156044146,
+    "sharpe": -4.408867009693892,
+    "max_drawdown": -0.035613751844560726,
+    "total_return": -0.025627665890656792,
+    "turnover_mean": 0.36363636363636354
+  },
+  "holdout_backtest": {
+    "initial_cash": 1000000.0,
+    "final_nav": 974372.3341093432,
+    "day_count": 11.0,
+    "period_return": -0.025627665890656792,
+    "ten_day_return": NaN,
+    "annual_return": -0.44830541156044146,
+    "sharpe": -4.408867009693892,
+    "max_drawdown": -0.035613751844560726,
+    "total_return": -0.025627665890656792,
+    "turnover_mean": 0.36363636363636354
+  },
+  "validation_market_equal_weight": {
+    "total_return": 0.022282719612121582,
+    "annual_return": 0.6567743396062766,
+    "sharpe": 2.9465719011246865,
+    "day_count": 11
+  },
+  "holdout_market_equal_weight": {
+    "total_return": 0.022282719612121582,
+    "annual_return": 0.6567743396062766,
+    "sharpe": 2.9465719011246865,
+    "day_count": 11
+  },
+  "sanity": {
+    "validation": {
+      "rows": 54067,
+      "days": 11,
+      "date_min": "2026-05-06",
+      "date_max": "2026-05-20",
+      "nan_counts": {
+        "y_score": 0,
+        "return_pred": 0,
+        "direction_prob": 0,
+        "g_price": 0,
+        "g_text": 0,
+        "g_fundamental": 0,
+        "label_next_open_return": 0
+      },
+      "gate_mean": {
+        "g_price": 0.3098214268684387,
+        "g_text": 0.3479602634906769,
+        "g_fundamental": 0.3422182500362396
+      }
+    },
+    "holdout": {
+      "rows": 54067,
+      "days": 11,
+      "date_min": "2026-05-06",
+      "date_max": "2026-05-20",
+      "nan_counts": {
+        "y_score": 0,
+        "return_pred": 0,
+        "direction_prob": 0,
+        "g_price": 0,
+        "g_text": 0,
+        "g_fundamental": 0,
+        "label_next_open_return": 0
+      },
+      "gate_mean": {
+        "g_price": 0.3098214268684387,
+        "g_text": 0.3479602634906769,
+        "g_fundamental": 0.3422182500362396
+      }
+    }
+  }
+}

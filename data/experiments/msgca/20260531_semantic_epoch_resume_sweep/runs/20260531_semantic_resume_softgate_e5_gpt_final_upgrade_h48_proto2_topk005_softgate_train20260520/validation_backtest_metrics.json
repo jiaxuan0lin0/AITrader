@@ -1,0 +1,12 @@
+{
+  "initial_cash": 1000000.0,
+  "final_nav": 981563.800224856,
+  "day_count": 11.0,
+  "period_return": -0.01843619977514399,
+  "ten_day_return": NaN,
+  "annual_return": -0.3470785353232928,
+  "sharpe": -2.959242466385894,
+  "max_drawdown": -0.02937627005400234,
+  "total_return": -0.01843619977514399,
+  "turnover_mean": 0.36363636363636354
+}

@@ -1,0 +1,8 @@
+{
+  "run_id": "20260525_174109_noleak_selected_e5",
+  "run_dir": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_noleak_baseline/runs/20260525_174109_noleak_selected_e5",
+  "config": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_noleak_baseline/configs/20260525_174109_noleak_selected_e5.yaml",
+  "script": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_noleak_baseline/scripts/20260525_174109_noleak_selected_e5.sh",
+  "log": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_noleak_baseline/logs/20260525_174109_noleak_selected_e5.log",
+  "session": "msgca_noleak_20260525_174109"
+}

@@ -1,0 +1,17 @@
+{
+  "window_days": 10.0,
+  "step_days": 1.0,
+  "window_count": 1.0,
+  "return_mean": -0.02857861008882845,
+  "return_median": -0.02857861008882845,
+  "return_std": 0.0,
+  "return_min": -0.02857861008882845,
+  "return_max": -0.02857861008882845,
+  "win_rate": 0.0,
+  "positive_count": 0.0,
+  "negative_count": 1.0,
+  "max_drawdown_min": -0.04950988205904794,
+  "turnover_mean": 0.36999999999999994,
+  "ten_day_return_mean": -0.02857861008882845,
+  "ten_day_return_median": -0.02857861008882845
+}

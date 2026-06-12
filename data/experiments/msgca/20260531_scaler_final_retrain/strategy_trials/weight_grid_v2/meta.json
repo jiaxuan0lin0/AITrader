@@ -1,0 +1,14 @@
+{
+  "benchmarks": {
+    "val2026_strict": 0.11899471282958984,
+    "hold2026_recent": -0.04206812381744385,
+    "same_pre_2025": -0.021613001823425293,
+    "same_comp_2025": 0.013384461402893066
+  },
+  "paths": {
+    "val2026_strict": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_scaler_final_retrain/runs/semantic_softgate_recent_e5_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520/validation_predictions.parquet",
+    "hold2026_recent": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_scaler_final_retrain/runs/final_refit_e20_gpt_final_upgrade_h48_proto2_topk005_softgate_train20260520/holdout_eval_all/epoch_12/holdout_e12_predictions.parquet",
+    "same_pre_2025": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_scaler_final_retrain/strategy_trials/reference_predictions/same_pre_2025_0521_0528.parquet",
+    "same_comp_2025": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260531_scaler_final_retrain/strategy_trials/reference_predictions/same_comp_2025_0602_0613.parquet"
+  }
+}

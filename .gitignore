@@ -1,0 +1,72 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local editors and agent state
+.vscode/
+.idea/
+.codex/
+.agents/
+
+# Local environment and credentials
+.env
+.env.*
+*.env
+*.env.*
+data/secrets/*
+code/data/secrets/*
+!data/secrets/README.md
+!code/data/secrets/README.md
+
+# Data lake and runtime outputs
+data/raw_market_data/
+data/datasets/
+data/archive/
+data/runtime/
+data/logs/
+data/models/
+
+# Heavy experiment artifacts. Keep README/CSV/JSON/YAML summaries trackable.
+data/experiments/**/checkpoints/
+data/experiments/**/*.pt
+data/experiments/**/*.pth
+data/experiments/**/*.safetensors
+data/experiments/**/*.parquet
+data/experiments/**/*.log
+data/experiments/**/*.pid
+data/experiments/**/competition_signals/
+data/experiments/**/latest_scored_predictions.*
+data/experiments/**/validation_predictions.*
+data/experiments/**/holdout_predictions.*
+data/experiments/**/predictions/
+
+# Report build artifacts and local backups
+report/build/
+report/backups/
+report/**/*.aux
+report/**/*.bbl
+report/**/*.bcf
+report/**/*.blg
+report/**/*.fdb_latexmk
+report/**/*.fls
+report/**/*.log
+report/**/*.out
+report/**/*.run.xml
+report/**/*.synctex.gz
+report/**/*.toc
+
+# Generic generated files
+*.tmp
+*.bak
+*.lock
+*.part
+*.pid
+*.log
+
+# Local scratch or migration-only experiment records
+# These contain intermediate remote-machine manifests or obsolete strict/smoke naming.
+data/experiments/msgca/20260603_strict_direct/
+data/experiments/msgca/20260604_pasted_full_local/
+report/msgca_strict_*.md
+report/figures/strict_*.pdf

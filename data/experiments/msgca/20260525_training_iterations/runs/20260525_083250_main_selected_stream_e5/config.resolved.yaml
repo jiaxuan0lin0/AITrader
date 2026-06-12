@@ -1,0 +1,85 @@
+paths:
+  processed_dir: /data/jiaxuanLin/AItrader/data/datasets/processed
+  feature_registry_path: /data/jiaxuanLin/AItrader/data/datasets/features/feature_registry.json
+  evaluation_dir: /data/jiaxuanLin/AItrader/data/datasets/factors/evaluation
+  model_root: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_training_iterations/runs/20260525_083250_main_selected_stream_e5
+data:
+  lookback: 60
+  primary_label: label_next_open_return
+  secondary_label: label_next_vwap_return
+  strict_lookback: false
+  fast_loader: true
+  use_polars: true
+  train_start: '2019-01-01'
+  train_end: '2024-12-31'
+  validation_start: '2025-01-01'
+  validation_end: '2025-12-31'
+  holdout_start: '2026-01-01'
+  smoke_features:
+  - open
+  - high
+  - low
+  - close_x
+  - amount
+  - turnover_rate
+  - volume_ratio
+  - pe_ttm
+  - pb
+  - total_mv
+  - circ_mv
+  - net_mf_amount
+  - market_news_count
+  - news_count
+  price_columns:
+  - open
+  - high
+  - low
+  - close
+  - vwap
+  - volume
+  - amount
+  - mf_net_amount_ratio
+  - mf_main_net_amount_ratio
+  - mf_small_order_pressure
+  text_prefixes:
+  - news_
+  - market_news
+  fundamental_prefixes:
+  - metric_
+  - mf_
+  - alpha158_
+model:
+  hidden_dim: 64
+  n_heads: 4
+  dropout: 0.1
+  price_layers: 2
+  fusion_layers: 1
+  max_price_variables: 256
+  max_text_features: 512
+  max_fundamental_features: 2048
+  enable_price: true
+  enable_news: true
+  enable_fundamental: true
+  use_gate: true
+  use_cross_attention: true
+train:
+  seed: 2026
+  epochs: 5
+  batch_days: 1
+  validate_each_epoch: false
+  validation_interval: 0
+  max_pairs_per_day: 4096
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  amp: true
+  rank_loss_weight: 1.0
+  return_loss_weight: 0.1
+  direction_loss_weight: 0.05
+  gate_entropy_weight: 0.001
+strategy:
+  initial_cash: 1000000.0
+  top_n: 20
+  daily_replace_k: 3
+  fee_rate: 0.0003
+  slippage_rate: 0.0005
+  full_investment: true

@@ -1,0 +1,100 @@
+{
+  "run_dir": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260528_first_wave_systematic_ablation/runs/20260528_0138_systematic_ablation_fa_topk010_h64",
+  "config": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260528_first_wave_systematic_ablation/configs/fa_topk010_h64.yaml",
+  "checkpoint": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260528_first_wave_systematic_ablation/runs/20260528_0138_systematic_ablation_fa_topk010_h64/checkpoints/msgca_latest.pt",
+  "train_log": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260528_first_wave_systematic_ablation/runs/20260528_0138_systematic_ablation_fa_topk010_h64/train_log.csv",
+  "validation_metrics": {
+    "rank_ic_mean": 0.0611098194,
+    "rank_ic_std": 0.0930126494,
+    "rank_ic_ir": 0.6570054693,
+    "direction_accuracy": 0.5121001867,
+    "topk_return_mean": 0.0011834286,
+    "day_count": 60.0
+  },
+  "holdout_metrics": {
+    "rank_ic_mean": 0.0410595434,
+    "rank_ic_std": 0.11689539,
+    "rank_ic_ir": 0.3512503225,
+    "direction_accuracy": 0.5150366659,
+    "topk_return_mean": 0.0014715171,
+    "day_count": 88.0
+  },
+  "validation_backtest": {
+    "initial_cash": 1000000.0,
+    "final_nav": 1047109.3907389393,
+    "day_count": 60.0,
+    "period_return": 0.04710939073893927,
+    "ten_day_return": NaN,
+    "annual_return": 0.2132956171450815,
+    "sharpe": 1.2925588897552296,
+    "max_drawdown": -0.08393684251869549,
+    "total_return": 0.04710939073893927,
+    "turnover_mean": 0.3116666666666667
+  },
+  "holdout_backtest": {
+    "initial_cash": 1000000.0,
+    "final_nav": 1062358.0911090286,
+    "day_count": 88.0,
+    "period_return": 0.06235809110902846,
+    "ten_day_return": NaN,
+    "annual_return": 0.18913288684440333,
+    "sharpe": 0.9071690005526263,
+    "max_drawdown": -0.13503120418887327,
+    "total_return": 0.06235809110902846,
+    "turnover_mean": 0.30795454545454537
+  },
+  "validation_market_equal_weight": {
+    "total_return": 0.032591819763183594,
+    "annual_return": 0.14419608369060755,
+    "sharpe": 0.8257937666944482,
+    "day_count": 60
+  },
+  "holdout_market_equal_weight": {
+    "total_return": 0.11465048789978027,
+    "annual_return": 0.36454582630245946,
+    "sharpe": 1.5871365554777306,
+    "day_count": 88
+  },
+  "sanity": {
+    "validation": {
+      "rows": 297764,
+      "days": 60,
+      "date_min": "2025-10-09",
+      "date_max": "2025-12-31",
+      "nan_counts": {
+        "y_score": 0,
+        "return_pred": 0,
+        "direction_prob": 0,
+        "g_price": 0,
+        "g_text": 0,
+        "g_fundamental": 0,
+        "label_next_open_return": 0
+      },
+      "gate_mean": {
+        "g_price": 0.3032488524913788,
+        "g_text": 0.3273192048072815,
+        "g_fundamental": 0.36943191289901733
+      }
+    },
+    "holdout": {
+      "rows": 437464,
+      "days": 88,
+      "date_min": "2026-01-05",
+      "date_max": "2026-05-20",
+      "nan_counts": {
+        "y_score": 0,
+        "return_pred": 0,
+        "direction_prob": 0,
+        "g_price": 0,
+        "g_text": 0,
+        "g_fundamental": 0,
+        "label_next_open_return": 0
+      },
+      "gate_mean": {
+        "g_price": 0.30735933780670166,
+        "g_text": 0.3161625862121582,
+        "g_fundamental": 0.37647807598114014
+      }
+    }
+  }
+}

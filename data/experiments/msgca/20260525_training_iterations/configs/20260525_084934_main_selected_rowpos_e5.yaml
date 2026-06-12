@@ -1,0 +1,12 @@
+paths:
+  model_root: /data/jiaxuanLin/AItrader/data/experiments/msgca/20260525_training_iterations/runs/20260525_084934_main_selected_rowpos_e5
+
+data:
+  strict_lookback: false
+  fast_loader: true
+  use_polars: true
+
+train:
+  epochs: 5
+  validate_each_epoch: false
+  validation_interval: 0

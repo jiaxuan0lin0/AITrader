@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-06-02T04:27:06.426765+00:00",
+  "config_path": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260601_r020_top10_strong_ablation/runs/r020_top10_topk010/config.resolved.yaml",
+  "label_col": "label_next_open_return",
+  "window_meta": {
+    "validation": {
+      "start": "2026-01-05",
+      "end": "2026-05-20",
+      "days": 88,
+      "rows": 430188
+    },
+    "holdout": {
+      "start": "2026-05-21",
+      "end": "2026-05-29",
+      "days": 7,
+      "rows": 34461
+    },
+    "combined": {
+      "start": "2026-01-05",
+      "end": "2026-05-29",
+      "days": 95,
+      "rows": 464649
+    }
+  },
+  "period_check": {
+    "period_abs_diff": 4.7525587909547085e-09,
+    "drawdown_abs_diff": 6.9329908480852964e-09,
+    "turnover_abs_diff": 0.0
+  },
+  "grid": {
+    "score_defs": [
+      {
+        "score_family": "y_score",
+        "score_variant": "y_score",
+        "wy": 1.0,
+        "wr": 0.0
+      },
+      {
+        "score_family": "return_pred",
+        "score_variant": "return_pred",
+        "wy": 0.0,
+        "wr": 1.0
+      },
+      {
+        "score_family": "blend_y25_ret75",
+        "score_variant": "blend",
+        "wy": 0.25,
+        "wr": 0.75
+      },
+      {
+        "score_family": "blend_y50_ret50",
+        "score_variant": "blend",
+        "wy": 0.5,
+        "wr": 0.5
+      },
+      {
+        "score_family": "blend_y75_ret25",
+        "score_variant": "blend",
+        "wy": 0.75,
+        "wr": 0.25
+      }
+    ],
+    "top_ns": [
+      5,
+      10,
+      15,
+      20,
+      30,
+      40
+    ],
+    "base_ks": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "cap_min_pcts": [
+      0.0,
+      0.3,
+      0.5
+    ],
+    "cap_bonuses": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "combo_count": 2175
+  },
+  "selection_weights": {
+    "validation": 0.45,
+    "holdout": 0.35,
+    "combined": 0.2
+  },
+  "holdout_note": "holdout has 7 trading days, so selection uses holdout period_excess_equal when 10-day competition_score is NaN.",
+  "outputs": {
+    "metrics_csv": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260601_r020_top10_strong_ablation/strategy_grid_y_vs_return_pred/strategy_grid_full_metrics.csv",
+    "selection_csv": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260601_r020_top10_strong_ablation/strategy_grid_y_vs_return_pred/strategy_grid_selection.csv",
+    "top50_csv": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260601_r020_top10_strong_ablation/strategy_grid_y_vs_return_pred/strategy_grid_top50.csv",
+    "best_by_score_family_csv": "/data/jiaxuanLin/AItrader/data/experiments/msgca/20260601_r020_top10_strong_ablation/strategy_grid_y_vs_return_pred/strategy_grid_best_by_score_family.csv"
+  },
+  "elapsed_sec": 260.446
+}

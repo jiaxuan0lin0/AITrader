@@ -1,0 +1,5 @@
+name: aitrader-latex
+channels:
+  - conda-forge
+dependencies:
+  - tectonic
